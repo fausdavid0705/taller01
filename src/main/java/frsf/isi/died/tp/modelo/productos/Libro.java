@@ -86,13 +86,13 @@ public class Libro extends MaterialCapacitacion {
 	@Override
 	public Boolean esLibro() {
 		//TODO 03: implementar metodo abstracto
-		return null;
+		return true;
 	}
 
 	@Override
 	public Boolean esVideo() {
 		//TODO 04: implementar metodo abstracto
-		return null;
+		return false;
 	}
 
 	/**
@@ -109,7 +109,10 @@ public class Libro extends MaterialCapacitacion {
 	@Override
 	public Double precio() {
 		//TODO 05: implementar metodo abstracto
-		return null;
+		double precio;
+		double FACTOR_PAGINAS=(0.03*(paginas/150));
+		precio = costo + (precioCompra * (1.0 + FACTOR_PAGINAS));
+		return precio;
 	}
 
 	

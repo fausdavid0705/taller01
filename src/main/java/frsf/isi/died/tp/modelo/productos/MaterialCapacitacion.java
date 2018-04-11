@@ -4,17 +4,23 @@
  * and open the template in the editor.
  */
 package frsf.isi.died.tp.modelo.productos;
-
+import frsf.isi.died.tp.util.Ordenable;
 import java.util.ArrayList;
 
-import frsf.isi.died.tp.util.Ordenable;
 
 /**
  * Representa de manera abstracta los materiales de capacitaci√≥n
+ * Integrantes del grupo:
+ * Brizi, Elias
+ * David, Fausto
+ * Reyes, Leandro
  * 
- * @author mdominguez
+ * https://github.com/fausdavid0705/taller01
+ * 
+ * @author fausdavid0705
  */
-public abstract class MaterialCapacitacion {
+
+public abstract class MaterialCapacitacion implements Ordenable{
 	protected Integer id;
 	/**
 	 * Titulo del material
@@ -61,7 +67,30 @@ public abstract class MaterialCapacitacion {
 	//TODO 01 implementar los metodos getters y setters y escribir el javadoc
 	// AYUDA: para implementar estos metodos usar un atajo del IDE 
 	// elegir el menu "Source" --> "Generate getters y setters" y elegir alli que metodos generar.
-	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public Double getCosto() {
+		return costo;
+	}
+
+	public void setCosto(Double costo) {
+		this.costo = costo;
+	}
+
 
 	/**
 	 * El precio de un material se define seg√∫n el tipo del material y toma como
@@ -81,14 +110,26 @@ public abstract class MaterialCapacitacion {
 	 * Retorna verdadero si es una instancia de video, falso en caso contrario
 	 * @return
 	 */
+	
 	public abstract Boolean esVideo();
 	
+
 	//TODO 02: sobrescribir el metodo toString de la clase "Object"
 	//	el m√©todo toString retorna un string que representa el material actual
 	//  retornando el titulo, y el precio 	 * usando el formato : 
 	// [Titulo: <titulo> ; Precio: <precio> ]
+	public String toString() {
+		return "[Titulo: "+titulo+" ; Precio: "+this.precio()+" ]"; 
+	}
 	
 	
 	// TODO 10: implementar Ordenable
+	public final int valor(){
+		/*Funciona aunque sea abstracto
+		 * porque el objeto this es una 
+		 * instancia de la Clase Libro o la Clase Video 
+		 * (donde si est· definida el mÈtodo precio())*/
+		return this.precio().intValue();
+	}
 
 }

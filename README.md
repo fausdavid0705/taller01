@@ -2,9 +2,9 @@
 Taller 01 Java
 
 ##Integrantes del grupo##
-1. <Integrante  del grupo>
-2. <Integrante  del grupo>
-3. <Integrante  del grupo>
+1. Brizi, Elias
+2. David, Fausto
+3. Reyes, Leandro
 
 ###Tareas a realizar:###
 *	Clonar el repositorio github

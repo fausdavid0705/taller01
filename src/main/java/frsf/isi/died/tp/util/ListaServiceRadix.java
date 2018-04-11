@@ -86,9 +86,14 @@ public class ListaServiceRadix extends ListasService {
 			int peso = (int) Math.pow(10.0, i);
 
 			for (Ordenable mat : this.arregloOrdenable) {
-				// TODO 11: IMPLEMENTAR el ALGORITMO que chequea el residuo 
+				// TODO 11: IMPLEMENTAR el ALGORITMO que chequea el residuo
 				// e inserta el elemento en la posicion de la matriz de residuos
 				// e incrementa el contador en cantidadPorFila en 1
+				int aux;
+				if(mat != null) {
+				aux=((Integer.valueOf((mat.valor()/peso)))%10);
+				residuos[aux][cantidadPorFila[aux]]=mat;
+				}
 			}
 			int indiceArregloOrdenado = 0;
 			for (int j = 0; j < 10; j++) {
