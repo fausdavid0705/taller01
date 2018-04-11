@@ -91,8 +91,9 @@ public class ListaServiceRadix extends ListasService {
 				// e incrementa el contador en cantidadPorFila en 1
 				int aux;
 				if(mat != null) {
-				aux=((Integer.valueOf((mat.valor()/peso)))%10);
+				aux=((int)(mat.valor()/peso)%10);
 				residuos[aux][cantidadPorFila[aux]]=mat;
+				cantidadPorFila[aux]++;
 				}
 			}
 			int indiceArregloOrdenado = 0;
