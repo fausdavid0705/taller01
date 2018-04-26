@@ -6,6 +6,7 @@
 package frsf.isi.died.tp.modelo.productos;
 import frsf.isi.died.tp.util.Ordenable;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 
 /**
@@ -20,7 +21,24 @@ import java.util.ArrayList;
  * @author fausdavid0705
  */
 
-public abstract class MaterialCapacitacion implements Ordenable{
+public abstract class MaterialCapacitacion implements Comparable<MaterialCapacitacion> {
+	
+	@Override
+	public int compareTo(MaterialCapacitacion o) {
+		if(this.equals(o)) {
+			if((this.precio().doubleValue())== (o.precio().doubleValue())){
+				return 0;
+			}
+			if(this.precio().doubleValue() > o.precio().doubleValue()) 
+				return 1;
+			else return -1;
+		}
+		else{
+			return this.titulo.compareTo(o.titulo);
+		}
+	}
+
+
 	protected Integer id;
 	/**
 	 * Titulo del material
@@ -89,7 +107,8 @@ public abstract class MaterialCapacitacion implements Ordenable{
 	public void setCosto(Double costo) {
 		this.costo = costo;
 	}
-
+	
+	
 	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof MaterialCapacitacion) {
