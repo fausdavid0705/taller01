@@ -84,6 +84,24 @@ public class Libro extends MaterialCapacitacion {
 	}
 
 	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Libro) {
+			Libro aux;
+			aux= (Libro) obj;
+			if (aux.titulo.toUpperCase().equals(titulo.toUpperCase())) {
+				return true;
+		}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
+	
+	@Override
 	public Boolean esLibro() {
 		//TODO 03: implementar metodo abstracto
 		return true;

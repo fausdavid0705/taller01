@@ -33,7 +33,6 @@ public abstract class MaterialCapacitacion implements Ordenable{
 	 */
 	protected Double costo;
 	
-
 	/**
 	 * Constructor por defecto
 	 */
@@ -91,7 +90,23 @@ public abstract class MaterialCapacitacion implements Ordenable{
 		this.costo = costo;
 	}
 
-
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof MaterialCapacitacion) {
+			MaterialCapacitacion aux;
+			aux= (MaterialCapacitacion) obj;
+			if (aux.titulo.toUpperCase().equals(titulo.toUpperCase())) {
+				return true;
+		}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	
 	/**
 	 * El precio de un material se define según el tipo del material y toma como
 	 * base el costo del mismo
