@@ -80,6 +80,28 @@ public class BibliotecaList implements Biblioteca {
 		else {
 			Collections.sort(materiales);
 		}
-
 	}
-}
+	
+	@Override
+	public MaterialCapacitacion buscar(Integer precio) {
+		boolean b = true;
+		this.ordenarPorPrecio(b);
+		return buscadorBinario(precio,0,materiales.size()-1);
+	}
+	
+	private MaterialCapacitacion buscadorBinario( Integer precio, int inicio, int fin) throws RuntimeException{
+		int indice=((inicio+fin)/2);
+
+		if((this.materiales.get(indice).precio().intValue()) == precio.intValue()) {
+			return (this.materiales.get(indice));
+		}
+		else {if ((this.materiales.get(indice).precio().intValue()) > precio.intValue()) {
+			return (buscadorBinario(precio, inicio, indice));
+		}
+		else {
+			if(inicio==fin) 
+				throw new RuntimeException("Material de precio "+ precio.toString() + " no encontrado");
+			return (buscadorBinario(precio, indice+1, fin)); 		
+		}
+	}
+}}
