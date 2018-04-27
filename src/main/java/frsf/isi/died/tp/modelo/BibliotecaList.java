@@ -64,16 +64,7 @@ public class BibliotecaList implements Biblioteca {
 		if(b) {
 			Collections.sort(materiales, new Comparator<MaterialCapacitacion>() {
 				public int compare(MaterialCapacitacion m1, MaterialCapacitacion m2) {
-				if(m1.precio().doubleValue() > m2.precio().doubleValue()){
-					return 1;
-				}
-				else {
-					if(m1.precio().doubleValue() == m1.precio().doubleValue())
-						return 0;
-					else {
-					return -1;
-					}		
-				}
+					return new Integer(m1.getCosto().compareTo(m2.getCosto()));
 			}	
 			});
 		}
@@ -84,23 +75,28 @@ public class BibliotecaList implements Biblioteca {
 	
 	@Override
 	public MaterialCapacitacion buscar(Integer precio) {
-		boolean b = true;
-		this.ordenarPorPrecio(b);
+		this.ordenarPorPrecio(true);
 		return buscadorBinario(precio,0,(materiales.size()-1));
 	}
 	
-	private MaterialCapacitacion buscadorBinario( Integer precio, int inicio, int fin) throws RuntimeException{
-		int indice=((inicio+fin)/2);
-		if((this.materiales.get(indice).getCosto().intValue()) == precio.intValue()) {
-			return (this.materiales.get(indice));
-		}
+	private MaterialCapacitacion buscadorBinario (Integer precio , Integer ini ,Integer fin) {
+		Integer index;
+		index = (((fin - ini)/2)+ini);
+		if (((materiales.get(index).getCosto()).intValue()) == (precio.intValue())) return materiales.get(index);
 		else {
-			if(inicio==fin) {
+			if (fin == ini) {
 				throw new RuntimeException("Material de precio "+ precio.toString() + " no encontrado");
-			}else {
-			if ((this.materiales.get(indice).getCosto().intValue()) < precio.intValue()) return (buscadorBinario(precio, inicio, indice));
-			else return (buscadorBinario(precio, indice+1, fin)); 		
 			}
-		
+			else {
+				if (((materiales.get(index).getCosto()).intValue()) > (precio.intValue())) {
+					return (buscadorBinario (precio,ini,index));
+				}
+				else {
+					index++;
+					return (buscadorBinario (precio,index,fin));
+				}
+			}
+		}
 	}
-}}
+}
+	
