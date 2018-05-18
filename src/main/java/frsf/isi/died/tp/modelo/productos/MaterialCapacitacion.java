@@ -21,7 +21,7 @@ import java.util.Comparator;
  * @author fausdavid0705
  */
 
-public abstract class MaterialCapacitacion implements Comparable<MaterialCapacitacion> {
+public abstract class MaterialCapacitacion implements Comparable<MaterialCapacitacion>, Ordenable {
 	
 	@Override
 	public int compareTo(MaterialCapacitacion o) {
