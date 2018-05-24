@@ -48,14 +48,7 @@ public class BibliotecaABB implements Biblioteca {
 	public Collection<MaterialCapacitacion> materiales() {
 		// TODO RETORNAR LA LISTA DEL ARBOL ORDENADA ASCENDENTEMENTE	
 		//TODO Completar
-		//
-		
-		
-		
-		
-		
-		
-		//
+
 		ArrayList<MaterialCapacitacion> lista = new ArrayList<MaterialCapacitacion>();
 		ArbolBinarioBusqueda ABB = (ArbolBinarioBusqueda) this.materiales;
 		lista.addAll(ABB.preOrden());

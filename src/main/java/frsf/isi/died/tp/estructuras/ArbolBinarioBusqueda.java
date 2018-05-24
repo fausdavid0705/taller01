@@ -171,7 +171,12 @@ public class ArbolBinarioBusqueda extends Arbol {
 		List<MaterialCapacitacion> lista = new ArrayList<MaterialCapacitacion>();
 		int comparacionPrecioMin =this.valor.precio().compareTo(precioMin);
 		int comparacionPrecioMax =this.valor.precio().compareTo(precioMax);
-
+		if (this.esVacio()) return null;
+		if ((this.valor.precio().intValue() <= precioMax.intValue()) && (this.valor.precio().intValue() >= precioMin.intValue())) {
+			lista.add(this.valor);
+		}
+		lista.addAll(this.derecho.rango(precioMin,precioMax));
+		lista.addAll(this.izquierdo.rango(precioMin,precioMax));
 		// TODO completar
 		return lista;
 	}
