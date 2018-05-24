@@ -1,5 +1,6 @@
 package frsf.isi.died.tp.modelo;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 
@@ -45,9 +46,21 @@ public class BibliotecaABB implements Biblioteca {
 
 	@Override
 	public Collection<MaterialCapacitacion> materiales() {
-		// TODO RETORNAR LA LISTA DEL ARBOL ORDENADA ASCENDENTEMENTE		
+		// TODO RETORNAR LA LISTA DEL ARBOL ORDENADA ASCENDENTEMENTE	
 		//TODO Completar
-		return null;		
+		//
+		
+		
+		
+		
+		
+		
+		//
+		ArrayList<MaterialCapacitacion> lista = new ArrayList<MaterialCapacitacion>();
+		ArbolBinarioBusqueda ABB = (ArbolBinarioBusqueda) this.materiales;
+		lista.addAll(ABB.preOrden());
+		lista.sort(ABB.comparador());
+		return lista;
 	}
 
 	@Override
@@ -94,6 +107,14 @@ public class BibliotecaABB implements Biblioteca {
 		// BibliotecaABB el metodo imprimir() o materiales()
 		
 		//TODO Completar
+		ArbolBinarioBusqueda ABB = new ArbolBinarioBusqueda(this.comparaPrecio);
+		ArrayList <MaterialCapacitacion> lista = new ArrayList <MaterialCapacitacion>();
+		lista.addAll(this.materiales.preOrden());
+		for (MaterialCapacitacion mat : lista) {
+			ABB.add(mat);
+		}
+		this.materiales = ABB;
+
 		
 	}
 	
@@ -106,6 +127,14 @@ public class BibliotecaABB implements Biblioteca {
 		// BibliotecaABB el metodo imprimir() o materiales()
 
 		//TODO Completar
+		ArbolBinarioBusqueda ABB = new ArbolBinarioBusqueda(this.comparaTitulo);
+		ArrayList <MaterialCapacitacion> lista = new ArrayList <MaterialCapacitacion>();
+		lista.addAll(this.materiales.preOrden());
+		for (MaterialCapacitacion mat : lista) {
+			ABB.add(mat);
+		}
+		this.materiales = ABB;
+
 	}
 
 }

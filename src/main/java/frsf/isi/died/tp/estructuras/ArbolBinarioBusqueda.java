@@ -11,7 +11,10 @@ public class ArbolBinarioBusqueda extends Arbol {
 	private Arbol izquierdo;
 	private Arbol derecho;
 	private Comparator<MaterialCapacitacion> comparador;
-
+	
+	public Comparator<MaterialCapacitacion> comparador() {
+		return this.comparador;
+	}
 	public ArbolBinarioBusqueda(Comparator<MaterialCapacitacion> comparardor) {
 		this(null,comparardor);
 	}
