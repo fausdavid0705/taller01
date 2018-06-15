@@ -110,20 +110,28 @@ public abstract class MaterialCapacitacion implements Comparable<MaterialCapacit
 	
 	
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
+		return result;
+	}
+
+	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof MaterialCapacitacion) {
-			MaterialCapacitacion aux;
-			aux= (MaterialCapacitacion) obj;
-			if (aux.titulo.toUpperCase().equals(titulo.toUpperCase())) {
-				return true;
-		}
-			else {
-				return false;
-			}
-		}
-		else {
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
-		}
+		if (getClass() != obj.getClass())
+			return false;
+		MaterialCapacitacion other = (MaterialCapacitacion) obj;
+		if (titulo == null) {
+			if (other.titulo != null)
+				return false;
+		} else if (!titulo.equals(other.titulo))
+			return false;
+		return true;
 	}
 	
 	/**
