@@ -10,6 +10,7 @@ package frsf.isi.died.tp.estructuras;
  * @author mdominguez
  */
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -202,9 +203,9 @@ public class Grafo<T> {
     
     public boolean existeCamino(T v) {
 		Vertice<T> vertice = this.getNodo(v);
-    	return true;
+		
+		return true;
     }
-    
     
     /**
      * @param n1
@@ -214,31 +215,38 @@ public class Grafo<T> {
     public List<T> buscarCaminoNSaltos(T n1,T n2,Integer saltos){
 		Vertice<T> origen = this.getNodo(n1);
 		Vertice<T> destino= this.getNodo(n2);
-        return this.buscarCaminoNSaltos(origen, destino, saltos, new HashSet<Vertice>());
+		List <T> resultado = new ArrayList<>();
+        resultado = buscarCaminoNSaltos(origen, destino, saltos, new HashSet<Vertice>());
+        if(!resultado.isEmpty()) resultado.add(n1);
+        Collections.reverse(resultado);
+        return resultado;
          
     }
     
     private List<T> buscarCaminoNSaltos(Vertice<T> n1,Vertice<T> n2,Integer saltos,HashSet<Vertice> visitados){
         ArrayList<T> resultado = new ArrayList<>();
-        visitados.add(n1);
-        if ((saltos.intValue() == 1)) {
-        	 if ((this.getAdyacentes(n1).contains(n2))) {
-             	resultado.add(n2.getValor());
-             	return resultado;
-             }
-        	 else {
-        		 return new ArrayList<>();
-        	 }
+    	List<T> adyacentes = new ArrayList<>();
+        adyacentes = this.getAdyacentes(n1.getValor());
+    	visitados.add(n1);
+        if ((this.getAdyacentes(n1.getValor()).contains(n2.getValor())) &&  (saltos.intValue() == 1)) {
+        	resultado.add(n2.getValor());
+        	visitados.clear();
+        	return resultado;
         }
-        for(Vertice<T> ady : this.getAdyacentes(n1)) {
-        	 resultado.addAll(buscarCaminoNSaltos(ady,n2,(saltos-1),visitados));
-        	 if(!resultado.isEmpty()) {
-        		 resultado.add(ady.getValor());
+        if(saltos.intValue() == 1) {
+        	visitados.clear();
+        	return resultado;
+        }
+        for(T ady : adyacentes) {
+        	if(!visitados.contains(this.getNodo(ady))) {
+        	ArrayList<T> res = new ArrayList<>();
+        	res.addAll(buscarCaminoNSaltos(this.getNodo(ady), n2, saltos-1, visitados));
+        	 if(!res.isEmpty()) res.add(ady);
+        	 resultado.addAll(res);
         	 }
-        	 return resultado;
-        }      
-       //TODO
+        }   
         return resultado;
+        //TODO
     }
 
 
